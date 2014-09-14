@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+
+<script src="~/Scripts/browsefile.js"></script>
+
+<h2>Test</h2>
+
+<input type="text" id="txt1" onchange="Fun1()"/>
+<div id="div1"></div>
+
+<form action="#type your action here" method="POST" enctype="multipart/form-data">
+<div id="yourBtn" style="height: 50px; width: 100px;border: 1px dashed #BBB; cursor:pointer;" onclick="getFile()">Click to upload!</div>
+<!-- this is your file input tag, so i hide it!-->
+<div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="getUploadedFileName(this)"/></div>
+<!-- here you can have file submit button or you can write a simple script to upload the file automatically-->
+<input type="submit" value='submit' >
+</form>

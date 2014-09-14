@@ -1,0 +1,56 @@
+﻿@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary();
+    <div ng-app="app">
+        <br />
+        <div class="input-group col-md-6 col-md-offset-3">
+            <input class="form-control" id="fileInput" type="text" placeholder="No file selected" disabled="">
+            <div class="input-group-btn btn-success fileUpload">
+                &nbsp;
+                <span class="glyphicon glyphicon-folder-open"></span>
+                <span>&nbsp;Browse File&nbsp;&nbsp;</span>
+                <input id="uploadedFile" name="uploadedFile" type="file" accept=".txt" class="upload" onchange="setSeletedFile(this)"/>
+            </div>
+            <div class="input-group-btn btn-warning fileUpload">
+                &nbsp;
+                <span class="glyphicon glyphicon-upload"></span>
+                <span>&nbsp;Start Upload&nbsp;&nbsp;</span>
+                <input type="submit" class="upload" value="Start Upload" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <table class="table table-stripped table-condensed">
+        <tr>
+            <th>Upload Date</th>
+            <th>Uploaded By</th>
+            <th>File Name</th>
+            <th>Status</th>
+            <th>Last Action Date</th>
+            <th>Actioned By</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span> Approve
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> Reject
+                </button>
+            </td>
+        </tr>
+    
+    </table>
+}
