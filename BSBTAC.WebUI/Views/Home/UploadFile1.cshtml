@@ -1,6 +1,57 @@
-﻿@using (Html.BeginForm("UploadFile1", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.ValidationSummary();
-    
-    
+﻿@model IEnumerable<BSBTAC.Domain.Models.UploadDetail>
+
+@{
+    ViewBag.Title = "UploadFile1";
 }
+
+<h2>UploadFile1</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Filename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadDatetime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Filename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadDatetime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UploadDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UploadDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UploadDetailId })
+        </td>
+    </tr>
+}
+
+</table>

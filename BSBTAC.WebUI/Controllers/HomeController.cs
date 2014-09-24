@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BSBTAC.Domain;
+using BSBTAC.Domain.Models;
+using Common.DAL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +12,12 @@ namespace BSBTAC.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private IUnitOfWork _uow;
+
+        public HomeController(IUnitOfWork uow)
+        {
+            _uow = uow;
+        }
         //
         // GET: /Home/
         public ActionResult Index()
@@ -25,7 +34,11 @@ namespace BSBTAC.WebUI.Controllers
         public ActionResult UploadFile(HttpPostedFileBase uploadedFile)
         {
             // Verify that the user selected a file
-            if (uploadedFile != null && uploadedFile.ContentLength > 0)
+            if (uploadedFile == null)
+            {
+                ViewBag.Message = "Select a file to upload";
+            }
+            else
             {
                 var path = @"C:\Temp";
                 // extract only the fielname
@@ -39,7 +52,8 @@ namespace BSBTAC.WebUI.Controllers
 
         public ActionResult UploadFile1()
         {
-            return View();
+            var uploaddetail = _uow.Repository<UploadDetail>().Query().Get().ToList();
+            return View(uploaddetail);
         }
 
         [HttpPost]
