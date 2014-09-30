@@ -1,57 +1,73 @@
-﻿@model IEnumerable<BSBTAC.Domain.Models.UploadDetail>
+﻿@model IPagedList<BSBTAC.Domain.Models.UploadDetail>
 
-@{
-    ViewBag.Title = "UploadFile1";
+@using (Html.BeginForm("UploadFile1", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary();
+    <div ng-app="app">
+        <br />
+        <div class="input-group col-md-6 col-md-offset-3">
+            <input class="form-control" id="fileInput" type="text" placeholder="No file selected" disabled="">
+            <div class="input-group-btn btn-success fileUpload">
+                &nbsp;
+                <span class="glyphicon glyphicon-folder-open"></span>
+                <span>&nbsp;Browse File&nbsp;&nbsp;</span>
+                <input id="uploadedFile" name="uploadedFile" type="file" accept=".txt" class="upload" onchange="setSeletedFile(this)"/>
+            </div>
+            <div class="input-group-btn btn-warning fileUpload">
+                &nbsp;
+                <span class="glyphicon glyphicon-upload"></span>
+                <span>&nbsp;Start Upload&nbsp;&nbsp;</span>
+                <input type="submit" class="upload" value="Start Upload" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>
+                Filename
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Uploaded By
+            </th>
+            <th>
+                UploadDatetime
+            </th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDatetime)
+            </td>
+        </tr>
+    }
+
+    </table>
+
+    <div class="pagedList col-md-offset-4">
+        @Html.PagedListPager(Model, page => Url.Action("UploadFile1", new {page}), 
+            PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+
 }
-
-<h2>UploadFile1</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Filename)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UploadedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UploadDatetime)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Filename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UploadedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UploadDatetime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UploadDetailId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UploadDetailId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UploadDetailId })
-        </td>
-    </tr>
-}
-
-</table>

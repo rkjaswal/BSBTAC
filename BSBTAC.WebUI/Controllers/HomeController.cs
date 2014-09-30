@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BSBTAC.WebUI.Controllers
 {
@@ -50,9 +51,11 @@ namespace BSBTAC.WebUI.Controllers
             return View();
         }
 
-        public ActionResult UploadFile1()
+        public ActionResult UploadFile1(int page = 1)
         {
-            var uploaddetail = _uow.Repository<UploadDetail>().Query().Get().ToList();
+            var uploaddetail = _uow.Repository<UploadDetail>().Query().Get()
+                .OrderBy(u => u.UploadDatetime)
+                .ToPagedList(page, 1);
             return View(uploaddetail);
         }
 
@@ -69,7 +72,7 @@ namespace BSBTAC.WebUI.Controllers
                 path = Path.Combine(path, fileName);
                 uploadedFile.SaveAs(path);
             }
-            return View();
+            return RedirectToAction("UploadFile1");
         }
 
         public ActionResult Test()
