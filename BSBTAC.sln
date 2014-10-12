@@ -13,6 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSBTAC.Domain", "BSBTAC.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSBTAC.LoadResult", "BSBTAC.LoadResult\BSBTAC.LoadResult.csproj", "{FCC05C62-BE2D-4A1A-A785-A4E4B16E42C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{95E9D967-60AE-426C-8E4F-FD14C3CD3F78}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSBTAC.Service", "BSBTAC.Service\BSBTAC.Service.csproj", "{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +52,10 @@ Global
 		{FCC05C62-BE2D-4A1A-A785-A4E4B16E42C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCC05C62-BE2D-4A1A-A785-A4E4B16E42C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCC05C62-BE2D-4A1A-A785-A4E4B16E42C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

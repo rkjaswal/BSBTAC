@@ -1,5 +1,7 @@
 ﻿using BSBTAC.Domain;
 using BSBTAC.Domain.Models;
+using BSBTAC.Service;
+using BSBTAC.Service.Interface;
 using Common.DAL;
 using System;
 using System.Collections.Generic;
@@ -158,64 +160,9 @@ namespace BSBTAC.LoadSearch
 
                 var path = @"C:\_Workspace\Projects\2012\BSBTAC\_Uploads\BSB";
 
-                /*
-                string strSql = "SELECT * FROM [" + filename + "]";
-                string strCSVConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";" + "Extended Properties='text;HDR=YES;FMT=Delimited(,)';";
+                ISqlBulkCopyService bulkcopyService = new SqlBulkCopyService();
+                bulkcopyService.BulkCopyFile(path, filename);
                 
-                OleDbDataAdapter oleda = new OleDbDataAdapter(strSql, strCSVConnString); 
-                */
-
-                string connString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='text;HDR=Yes;FMT=Delimited(,)';", path);
-                using (OleDbConnection con = 
-                        new OleDbConnection(connString))
-                {
-                    using (OleDbCommand cmd = new OleDbCommand(string.Format
-                                              ("SELECT * FROM [{0}]", filename), con))
-                    {
-                        con.Open();
-                        /* 
-                        // Using a DataReader to process the data
-                        using (OleDbDataReader reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                // Process the current reader entry...
-                            }
-                        }
-                        */
-                        using (OleDbDataAdapter adp = new OleDbDataAdapter(cmd))
-                        {
-                            DataTable tbl = new DataTable();
-                            adp.Fill(tbl);
-
-                            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConfigurationManager.ConnectionStrings["BSBTACNonEF"].ConnectionString);
-                            bulkCopy.BatchSize = 1000;
-
-                            bulkCopy.ColumnMappings.Add(0, 2);
-                            bulkCopy.ColumnMappings.Add(1, 3);
-                            bulkCopy.ColumnMappings.Add(2, 4);
-                            bulkCopy.ColumnMappings.Add(3, 5);
-                            bulkCopy.ColumnMappings.Add(4, 6);
-                            bulkCopy.ColumnMappings.Add(5, 7);
-                            bulkCopy.ColumnMappings.Add(6, 8);
-                            bulkCopy.ColumnMappings.Add(7, 9);
-                            bulkCopy.ColumnMappings.Add(8, 10);
-                            bulkCopy.ColumnMappings.Add(9, 11);
-                            bulkCopy.ColumnMappings.Add(10, 12);
-                            bulkCopy.ColumnMappings.Add(11, 13);
-
-                            bulkCopy.DestinationTableName = "SearchDefinition";
-                            bulkCopy.WriteToServer(tbl);
-                            /*
-                            foreach (DataRow row in tbl.Rows)
-                            {
-                            }
-                            */
-                        }
-                    }
-                }
-
-
             }
             catch (EntityCommandExecutionException)
             {

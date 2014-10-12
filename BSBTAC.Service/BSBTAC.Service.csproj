@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD141A0E-CBB7-4B65-B8A1-E31E85759C9C}</ProjectGuid>
+    <ProjectGuid>{67C5A17D-63A6-4CAC-A140-BCD2B51A7535}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BSBTAC.Domain</RootNamespace>
-    <AssemblyName>BSBTAC.Domain</AssemblyName>
+    <RootNamespace>BSBTAC.Service</RootNamespace>
+    <AssemblyName>BSBTAC.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,20 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList.Mvc">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,32 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ApplSummary.cs" />
-    <Compile Include="BSBTACContext.cs" />
-    <Compile Include="Models\Cameo2006.cs" />
-    <Compile Include="Mapping\ApplSummaryMap.cs" />
-    <Compile Include="Mapping\Cameo2006Map.cs" />
-    <Compile Include="Mapping\SearchDefinitionMap.cs" />
-    <Compile Include="Mapping\UploadDetailMap.cs" />
-    <Compile Include="Models\SearchDefinition.cs" />
-    <Compile Include="Models\UploadDetail.cs" />
+    <Compile Include="AccountFileParserService.cs" />
+    <Compile Include="AllInfoFileParserService.cs" />
+    <Compile Include="FileParserFactory.cs" />
+    <Compile Include="Interface\IFileParserService.cs" />
+    <Compile Include="Interface\ISqlBulkCopyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlBulkCopyService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\BSBTAC.Domain\BSBTAC.Domain.csproj">
+      <Project>{ad141a0e-cbb7-4b65-b8a1-e31e85759c9c}</Project>
+      <Name>BSBTAC.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.DAL\Common.DAL.csproj">
       <Project>{d5825438-f8e8-4006-9dcd-bdddf28630ad}</Project>
       <Name>Common.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\PagedList.css" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
