@@ -1,0 +1,47 @@
+﻿@model BSBTAC.WebUI.ViewModels.ConfigureServiceViewModel
+<script src="~/Scripts/CADM/configureservice.js"></script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br/>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <label class="control-label col-md-2">Select Service</label>
+            <div class="col-md-10">
+                @Html.DropDownList("SelectedService", null, new {id="ServiceList"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">URL</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SiteLogin.HostName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Company</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Company)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">User Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SiteLogin.UserName)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Password</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SiteLogin.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

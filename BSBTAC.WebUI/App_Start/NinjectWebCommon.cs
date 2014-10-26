@@ -63,9 +63,10 @@ namespace BSBTAC.WebUI
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDataContext>().To<BSBTACContext>();
-            //kernel.Bind<IDataContext>().To<LwAppsContext>();
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IDataContext>().To<BSBTACContext>().Named("BSBTAC");
+            kernel.Bind<IDataContext>().To<CADMContext>().Named("CADM");
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().Named("BSBTAC");
+            kernel.Bind<IUnitOfWork>().To<CADMUnitOfWork>().Named("CADM");
         }        
     }
 }

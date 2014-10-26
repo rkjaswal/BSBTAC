@@ -12,6 +12,7 @@ namespace BSBTAC.Service
 {
     public class FileParserFactory
     {
+        /*
         public static IFileParserService CreateFileParser(string fileName)
         {
             string conn = "";
@@ -34,7 +35,7 @@ namespace BSBTAC.Service
                         new OleDbDataReader(),
                         fileName);
             }
-
         }
+        */
     }
 }

@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -22,6 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Upload File", "UploadFile", "Home")</li>
                     <li>@Html.ActionLink("Upload File1", "UploadFile1", "Home")</li>
+                    <li>@Html.ActionLink("Configure Service", "ConfigureService", "CADM")</li>
                 </ul>
             </div>
         </div>
@@ -36,8 +39,6 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/browsefile.js"></script>
     @RenderSection("scripts", required: false)

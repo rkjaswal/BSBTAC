@@ -54,14 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CADMContext.cs" />
     <Compile Include="Models\ApplSummary.cs" />
     <Compile Include="BSBTACContext.cs" />
     <Compile Include="Models\Cameo2006.cs" />
-    <Compile Include="Mapping\ApplSummaryMap.cs" />
-    <Compile Include="Mapping\Cameo2006Map.cs" />
-    <Compile Include="Mapping\SearchDefinitionMap.cs" />
-    <Compile Include="Mapping\UploadDetailMap.cs" />
     <Compile Include="Models\SearchDefinition.cs" />
+    <Compile Include="Models\ServiceType.cs" />
+    <Compile Include="Models\SiteLogin.cs" />
     <Compile Include="Models\UploadDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,5 +1,6 @@
 ﻿#region
 
+using Ninject;
 using System;
 using System.Collections;
 using System.Threading;
@@ -13,16 +14,20 @@ namespace Common.DAL
     {
         #region Private Fields
 
-        private readonly IDataContext _context;
-        private readonly Guid _instanceId;
-        private bool _disposed;
-        private Hashtable _repositories;
+        protected IDataContext _context;
+        protected Guid _instanceId;
+        protected bool _disposed;
+        protected Hashtable _repositories;
 
         #endregion Private Fields
 
         #region Constuctor/Dispose
 
-        public UnitOfWork(IDataContext context)
+        public UnitOfWork()
+        {
+            _instanceId = Guid.NewGuid();
+        }
+        public UnitOfWork([Named("BSBTAC")] IDataContext context)
         {
             _context = context;
             _instanceId = Guid.NewGuid();

@@ -160,6 +160,9 @@ namespace BSBTAC.LoadSearch
 
                 var path = @"C:\_Workspace\Projects\2012\BSBTAC\_Uploads\BSB";
 
+                //IFileParserService fileParser = FileParserFactory.CreateFileParser(filename);
+                //fileParser.ParseFile();
+                
                 ISqlBulkCopyService bulkcopyService = new SqlBulkCopyService();
                 bulkcopyService.BulkCopyFile(path, filename);
                 

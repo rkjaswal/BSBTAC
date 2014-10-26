@@ -8,14 +8,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using Ninject;
 
 namespace BSBTAC.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private IUnitOfWork _uow;
-
-        public HomeController(IUnitOfWork uow)
+        [Inject]
+        public HomeController([Named("BSBTAC")] IUnitOfWork uow)
         {
             _uow = uow;
         }
