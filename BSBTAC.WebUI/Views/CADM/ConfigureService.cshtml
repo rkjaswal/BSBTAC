@@ -12,7 +12,8 @@
                 @Html.DropDownList("SelectedService", null, new {id="ServiceList"})
             </div>
         </div>
-
+        @Html.HiddenFor(model => model.SiteLogin.SiteId)        
+        @Html.HiddenFor(model => model.SiteLogin.ApplicationId)        
         <div class="form-group">
             <label class="control-label col-md-2">URL</label>
             <div class="col-md-10">

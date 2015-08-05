@@ -22,7 +22,12 @@ namespace BSBTAC.Domain
             modelBuilder.Entity<SiteLogin>().ToTable("SiteLogin");
 
             modelBuilder.Entity<SiteLogin>()
-                .MapToStoredProcedures(p => p.Update(s => s.HasName("CreateSiteLogin")));
+                .MapToStoredProcedures(p => p.Update(s => s.HasName("CreateSiteLogin")
+                    .Parameter(x => x.SiteId, "SiteId")
+                    .Parameter(x => x.ApplicationId, "ApplicationId")
+                    .Parameter(x => x.HostName, "Hostname")
+                    .Parameter(x => x.UserName, "Username")
+                    .Parameter(x => x.Password, "Password")));
 
             base.OnModelCreating(modelBuilder);
         }

@@ -57,16 +57,21 @@ namespace BSBTAC.WebUI.Controllers
 
             var siteName = new SqlParameter("@sitename", "CallCredit");
             var applicationName = new SqlParameter("@applicationname", service.Name);
-            var hostName = new SqlParameter("@hostname", servicedata.SiteLogin.HostName);
-            var userName = new SqlParameter("@username", servicedata.SiteLogin.UserName);
-            var password = new SqlParameter("@password", servicedata.SiteLogin.Password);
-            /*
-            var siteLogin = _cadmuow.Repository<SiteLogin>()
-                .SqlQuery("CreateSiteLogin @sitename, @applicationname, @hostname, @username, @password"
-                , siteName, applicationName, hostName, userName, password).First();
+
+            SiteLogin siteLogin;
+            try
+            {
+                siteLogin = _cadmuow.Repository<SiteLogin>()
+                    .SqlQuery("GetSiteLogin @sitename, @applicationname", siteName, applicationName).FirstOrDefault();
+
+                siteLogin = servicedata.SiteLogin;
+                siteLogin.ObjectState = ObjectState.Modified;
+                _cadmuow.Save();
+            }
+            catch (Exception Ex)
+            {
+            }
             
-            var siteLogin = _cadmuow.Repository<SiteLogin>().Query().Get().FirstOrDefault()
-            */
             service.Company = servicedata.Company;
             _uow.Save();
 
